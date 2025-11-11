@@ -126,10 +126,22 @@ class OllamaProvider(Provider):
         """
         Normalize the API response to a common format (ChatCompletionResponse).
         """
+
         normalized_response = ChatCompletionResponse()
+
         normalized_response.choices[0].message.content = response_data["message"][
-            "thinking"
+            "content"
         ]
+
+
+        # if response_data["message"]["content"] is not None:
+        #     normalized_response.choices[0].message.content = response_data["message"][
+        #         "content"
+        #     ]
+        # else:
+        #     normalized_response.choices[0].message.reasoning_content = response_data["message"][
+        #         "thinking"
+        #     ]
         # if response_data["message"]["tool_calls"] is not None:
         #     tool_calls = []
         #     for tool_call in message["tool_calls"]:
